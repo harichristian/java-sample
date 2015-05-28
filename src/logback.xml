@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<configuration>
+	<appender name="stdout" class="ch.qos.logback.core.FileAppender">
+		<filter class="ch.qos.logback.core.filter.EvaluatorFilter">   
+      		<evaluator class="ch.qos.logback.classic.boolex.OnMarkerEvaluator">
+        		<marker>out</marker>
+      		</evaluator>
+     		<onMismatch>DENY</onMismatch>
+     		<onMatch>ACCEPT</onMatch>
+   		</filter>
+		<file>op_id_out.log</file>
+		<append>true</append>
+		<encoder>
+			<pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="stderr" class="ch.qos.logback.core.FileAppender">
+		<filter class="ch.qos.logback.core.filter.EvaluatorFilter">   
+      		<evaluator class="ch.qos.logback.classic.boolex.OnMarkerEvaluator">
+        		<marker>err</marker>
+      		</evaluator>
+     		<onMismatch>DENY</onMismatch>
+     		<onMatch>ACCEPT</onMatch>
+   		</filter>
+		<file>op_id_err.log</file>
+		<append>true</append>
+		<encoder>
+			<pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<root level="DEBUG">
+		<appender-ref ref="stdout" />
+		<appender-ref ref="stderr" />
+	</root>
+
+</configuration>
